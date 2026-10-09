@@ -9,8 +9,9 @@
 import {execFileSync, spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const argv = process.argv.slice(2);
 const ti = argv.indexOf('--timeline');
 const timelinePath = path.resolve(ti === -1 ? path.join(ROOT, 'timeline.json') : argv.splice(ti, 2)[1]);
