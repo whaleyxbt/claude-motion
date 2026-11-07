@@ -8,7 +8,7 @@
     "still": "remotion still EffortVideo",
     "draft": "remotion render EffortVideo out/draft.mp4 --scale=0.5 --crf=28",
     "render": "remotion render EffortVideo out/effort-silent.mp4",
-    "sfx": "python3 -m sfx sfx/cues/effort.py",
+    "sfx": "node scripts/py.mjs -m sfx sfx/cues/effort.py",
     "mux": "ffmpeg -loglevel error -y -i out/effort-silent.mp4 -i public/sfx.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -movflags +faststart -shortest out/effort.mp4",
     "build": "npm run sfx && npm run render && npm run mux",
     "sheet": "node scripts/sheet.mjs",
