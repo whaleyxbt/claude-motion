@@ -1,4 +1,4 @@
-import {clamp01, easeOutExpo, fmt, hash, smooth} from './util.js';
+import {clamp01, easeOutExpo, esc, fmt, hash, smooth} from './util.js';
 
 /**
  * The director edits a sim to the music: hard cuts between wide and tight
@@ -116,7 +116,7 @@ export function createDirector(app, cfg) {
     const b0 = before(beats, start + 0.02);
     const hold = s.hold ?? 8;
     const end = s.end ?? beats[Math.min(beats.length - 1, b0 + hold)] ?? start + hold * spb;
-    return {...s, i, start, end, b0};
+    return {...s, kind: s.kind === 'num' ? 'num' : 'hero', i, start, end, b0};
   });
 
   // ---- DOM layers
@@ -234,8 +234,8 @@ export function createDirector(app, cfg) {
       if (built !== cur.i) {
         built = cur.i;
         const words = (cur.text || '').split(/\s+/).filter(Boolean);
-        storyEl.innerHTML = `<div class="cap ${cur.kind || 'hero'}">
-          ${cur.tag ? `<div class="cap-tag">${cur.tag}</div>` : ''}
+        storyEl.innerHTML = `<div class="cap ${cur.kind}">
+          ${cur.tag ? `<div class="cap-tag">${esc(cur.tag)}</div>` : ''}
           <div class="cap-main">${
             cur.kind === 'num'
               ? `<span class="w"><span class="n"></span></span>`
@@ -249,7 +249,7 @@ export function createDirector(app, cfg) {
                       if (open) on = true;
                       const hl = on;
                       if (close) on = false;
-                      return `<span class="w${hl ? ' hl' : ''}">${w.replace(/^\*|\*$/g, '')}</span>`;
+                      return `<span class="w${hl ? ' hl' : ''}">${esc(w.replace(/^\*|\*$/g, ''))}</span>`;
                     })
                     .join(' ');
                 })()

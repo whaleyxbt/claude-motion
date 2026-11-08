@@ -16,6 +16,7 @@
     "cover": "remotion still ArticleCover out/article-cover.png",
     "gif": "ffmpeg -loglevel error -y -i out/effort.mp4 -vf \"fps=12,scale=420:-1:flags=lanczos,hqdn3d=4:4:6:6,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle\" media/preview.gif",
     "typecheck": "tsc",
+    "test:sims": "node --test sims/kit/runtime.test.mjs",
     "sims": "node sims/build.mjs",
     "capture": "node sims/capture.mjs"
   },

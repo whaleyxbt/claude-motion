@@ -27,24 +27,16 @@ export const BASE = {
   beats: null,
 };
 
-const fromBase64 = (s) => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
-
 /**
  * Config sources, later wins: BASE, the sim's defaults, window.__SIM_CONFIG
- * (injected by the capture script), ?config=<base64 json>, and a few plain
- * query params (?title= ?accent= ?seed= ?theme= ?duration=).
+ * (injected by the capture script), and a few plain query params
+ * (?title= ?accent= ?seed= ?theme= ?duration=).
+ * Full configs may contain trusted HTML; never accept them from a URL.
  */
 export function loadConfig(defaults) {
   let cfg = merge(BASE, defaults);
   if (window.__SIM_CONFIG) cfg = merge(cfg, window.__SIM_CONFIG);
   const q = new URLSearchParams(location.search);
-  if (q.get('config')) {
-    try {
-      cfg = merge(cfg, JSON.parse(fromBase64(q.get('config'))));
-    } catch (e) {
-      console.warn('bad ?config', e);
-    }
-  }
   if (q.get('title')) cfg = merge(cfg, {hud: {title: q.get('title')}});
   if (q.get('accent')) cfg.accent = '#' + q.get('accent').replace('#', '');
   if (q.get('seed')) cfg.seed = Number(q.get('seed'));

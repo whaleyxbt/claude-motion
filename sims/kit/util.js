@@ -67,6 +67,10 @@ export const fmt = (n, d = 0) =>
   Number(n).toLocaleString('en-US', {minimumFractionDigits: d, maximumFractionDigits: d});
 export const pad = (n, w) => String(Math.max(0, Math.floor(n))).padStart(w, '0');
 
+/** Escape plain text before interpolating it into HTML. */
+export const esc = (s) =>
+  String(s ?? '').replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'})[c]);
+
 /** Deep merge plain objects; arrays and scalars from `b` replace `a`. */
 export const merge = (a, b) => {
   if (!b || typeof b !== 'object' || Array.isArray(b)) return b === undefined ? a : b;

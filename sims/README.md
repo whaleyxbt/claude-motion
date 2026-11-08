@@ -59,6 +59,18 @@ Other flags: `--config post.json` (merged over the sim's `DEFAULTS`),
 Every example has `watermark` in its `DEFAULTS`. Set it to your own handle,
 or to `''`, in the sim or in a `--config` file.
 
+Full configs are trusted input: examples can include HTML in them. Use
+`capture.mjs --config` or edit the sim's defaults; `?config=` in shared URLs
+is ignored, including in capture mode. The simple URL options (`title`,
+`accent`, `seed`, `theme`, `duration`, `nodirector`) still work.
+Story captions treat `tag` and `text` as plain text, with `*word*` highlighting;
+`kind` supports `hero` and `num` (other values fall back to `hero`).
+
+Run the config and caption security tests with `npm run test:sims` (requires
+the same Chromium installation or `$CHROMIUM` as capture). After updating
+the kit, run `npm run sims` and replace any hosted HTML with the rebuilt
+files from `sims/dist/`; existing copies do not update automatically.
+
 ## Making a new sim
 
 Copy the example closest to what you want and change it. The contract:
