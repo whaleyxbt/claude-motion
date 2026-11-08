@@ -46,7 +46,7 @@ ffmpeg -y -i out/<name>-silent.mp4 -i public/<name>.wav -map 0:v -map 1:a -c:v c
 
 The example has shortcuts: `npm run draft`, `npm run sfx`, `npm run build` (sound + render + mux → `out/effort.mp4`), `npm run cover`, `npm run gif`.
 
-Requirements: Node 20+, Python 3, ffmpeg. If `/usr/bin/chromium` (or `$REMOTION_BROWSER`) exists it's used; otherwise Remotion downloads its own browser on first render.
+Requirements: Node 20+, Python 3, ffmpeg. On Windows, run `python` wherever these docs say `python3`. If `/usr/bin/chromium` (or `$REMOTION_BROWSER`) exists it's used; otherwise Remotion downloads its own browser on first render.
 
 ## Layout
 
