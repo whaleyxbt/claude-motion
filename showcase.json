@@ -1,0 +1,36 @@
+{
+  "fps": 60,
+  "duration": 15,
+  "s1": {
+    "typeStart": 0.3,
+    "typeEnd": 1.5,
+    "enter": 1.7,
+    "exit": 1.8,
+    "dockStart": 2.1,
+    "dockEnd": 2.65
+  },
+  "s2": {
+    "title": 2.4,
+    "stats": [2.9, 3.4, 3.9, 4.4],
+    "exit": 6.0
+  },
+  "s3": {
+    "line1": 6.4,
+    "line2": 6.65,
+    "cards": [7.05, 7.25, 7.45, 7.65],
+    "exit": 9.05
+  },
+  "s4": {
+    "enter": 9.6,
+    "countStart": 9.7,
+    "countEnd": 10.8,
+    "pullStart": 10.9,
+    "impact": 11.45
+  },
+  "s5": {
+    "line1": 11.9,
+    "line2": 12.25,
+    "sub": 12.8,
+    "handle": 13.25
+  }
+}

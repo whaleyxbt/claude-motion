@@ -2,6 +2,7 @@ node_modules/
 out/
 .remotion/
 public/sfx.wav
+public/showcase.wav
 __pycache__/
 .mcp.json
 .env
